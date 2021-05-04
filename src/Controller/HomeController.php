@@ -17,11 +17,25 @@ class HomeController extends AbstractController
     {
         $repository= $this->getDoctrine()->getRepository(Annonce::class);
          $annonces=$repository->findAll();
-        dump($annonces);
+     
         $title = "Welcome Hone";
         return $this->render('page/home.html.twig', [
             'title' => $title,
             'annonces'=>$annonces,
         ]);
     }
+    /**
+     * @Route("/annonces/{id<[0-9]+>}", name="annonce_show")
+     */
+    public function show(Annonce $annonce): Response
+    {
+        
+        
+        $title = "show";
+        return $this->render('page/show.html.twig', [
+            'title' => $title,
+            'annonce'=>$annonce,
+        ]);
+    }
+
 }

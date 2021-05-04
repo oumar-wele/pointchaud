@@ -6,7 +6,7 @@
         <h3>annonces: {{annonces|length}} </h3>
         {% for annonce in annonces %}
             <article>
-                <h2>{{ annonce.title}}</h2>
+                <h2> <a href="{{path('annonce_show',{id: annonce.id})}}">{{ annonce.title}}</a></h2>
                 <p>{{ annonce.description}}</p>
             </article>
         {% endfor %}

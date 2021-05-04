@@ -1,0 +1,18 @@
+{% block body %}
+
+    {% include 'navbar/_navbar.html.twig' %}
+
+    <div class="container mt-5 mt-5 text-center">
+  
+        <article>
+            <h2> {{ annonce.title}}</h2>
+            <p>{{ annonce.description}}</p>
+        </article>
+      
+    </div>
+
+    {% include 'footer/_footer.html.twig' %}
+
+    
+
+{% endblock %}

@@ -79,7 +79,7 @@ class HomeController extends AbstractController
     /**
      * @Route("/annonces/{id<[0-9]+>}/modifier", name="edit_annoce")
      */
-    public function etdit(Annonce $annonce,Request $requet, int $id): Response
+    public function etdit(Annonce $annonce,Request $requet): Response
     {
         $form = $this->createFormBuilder($annonce)
                 ->add('title')
@@ -104,6 +104,22 @@ class HomeController extends AbstractController
             'title' => $title,
             'formulaire'=>$form->createView(),
         ]);
+
+    }
+    /**
+     * @Route("/annonces/{id<[0-9]+>}/supprimer", name="delate_annoce", methods={"DELATE"})
+     */
+    public function delete(Request $requet,Annonce $annonce): Response
+    {
+        if($this->isCsrfTokenValid('delation.annoce',$requet->request->get('csrf_token'))){
+            $em= $this->getDoctrine()->getManager();
+            $em->remove($annonce);
+            $em->flush();
+
+        }
+
+
+        return $this->redirectToRoute("app_home");
 
     }
 

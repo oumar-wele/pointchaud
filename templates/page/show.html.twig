@@ -7,10 +7,15 @@
         <article>
             <h2> {{ annonce.title}}</h2>
             <p>{{ annonce.description}}</p>
-            <a href="{{path('edit_annoce',{id: annonce.id})}}">Modifier l'annonce</a>
+            <a href="{{path('edit_annoce',{id: annonce.id})}}">Modifier l'annonce</a>|
+            <a href="#" onclick="event.preventDefault(); confirm('Veuillez confirmer la suppression !')&& document.getElementById('js-annonce-delate').submit();" >Supprimer l'annonce</a>
         </article>
       
     </div>
+    <form id="js-annonce-delate" action="{{path('delate_annoce',{id: annonce.id})}}" method="post" style="display: none;">
+        <input type="hidden" name="csrf_token" value="{{csrf_token('delation.annoce')}}">
+        <input type="hidden" name="_method" value="DELATE">
+    </form>
 
     {% include 'footer/_footer.html.twig' %}
 

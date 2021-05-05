@@ -7,7 +7,7 @@
         <article>
             <h2> {{ annonce.title}}</h2>
             <p>{{ annonce.description}}</p>
-            <a href="{{path('edit_annoce')}}">Modifier l'annonce</a>
+            <a href="{{path('edit_annoce',{id: annonce.id})}}">Modifier l'annonce</a>
         </article>
       
     </div>

@@ -49,7 +49,9 @@ class HomeController extends AbstractController
                 ->add('title')
                 ->add('description',TextareaType::class)
                 ->getForm();
-                $form->handleRequest($requet);
+
+        $form->handleRequest($requet);
+
         if($form->isSubmitted() && $form->isValid() ){
             $data= $form->getData();
             $annonce= new Annonce();
@@ -61,26 +63,46 @@ class HomeController extends AbstractController
             $em->flush();
             
 
-            $this->addFlash('success', 'Inscription  realisé avec succes!');
+            //$this->addFlash('success', 'Inscription  realisé avec succes!');
             return $this->redirectToRoute("app_home");
 
         }
         $title = "Creer votre annonce";
          return  $this->render('page/creerAnnonce.html.twig',[
              'title'=>$title,
+             //'annonce'=>$annonce,
              'formulaire'=>$form->createView(),
 
          ]);
 
     }
-        /**
-     * @Route("/editer-une-annonce", name="edit_annoce")
+    /**
+     * @Route("/annonces/{id<[0-9]+>}/modifier", name="edit_annoce")
      */
-    public function etdit(): Response
+    public function etdit(Annonce $annonce,Request $requet, int $id): Response
     {
+        $form = $this->createFormBuilder($annonce)
+                ->add('title')
+                ->add('description',TextareaType::class)
+                ->getForm();
+
+        $form->handleRequest($requet);
+
+        if($form->isSubmitted() && $form->isValid() ){
+
+
+            $em= $this->getDoctrine()->getManager();
+            $em->flush();
+            
+
+            return $this->redirectToRoute("app_home");
+
+        }
+
         $title = "Editer votre annonce";
         return $this->render('page/edit.html.twig', [
             'title' => $title,
+            'formulaire'=>$form->createView(),
         ]);
 
     }

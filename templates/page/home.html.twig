@@ -1,16 +1,17 @@
+{% extends 'base.html.twig' %}
 {% block body %}
 
     {% include 'navbar/_navbar.html.twig' %}
 
-    <div class="container mt-5 mt-5 text-center">
-        <h3>annonces: {{annonces|length}} </h3>
+    
+        <h3>Annonces: {{annonces|length}} </h3>
         {% for annonce in annonces %}
             <article>
                 <h2> <a href="{{path('annonce_show',{id: annonce.id})}}">{{ annonce.title}}</a></h2>
                 <p>{{ annonce.description|u.truncate(50,'...',false)}}</p>
             </article>
         {% endfor %}
-    </div>
+   
 
     {% include 'footer/_footer.html.twig' %}
 

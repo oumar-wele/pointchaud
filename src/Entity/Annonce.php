@@ -45,6 +45,22 @@ class Annonce
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le champs prix est requis")
+     */
+    private $prix;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $categorie;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageName;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -110,5 +126,41 @@ class Annonce
         }
         
         $this->setUpdatedAt( new \DateTimeImmutable);
+    }
+
+    public function getPrix(): ?string
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(string $prix): self
+    {
+        $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?string
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?string $categorie): self
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName(?string $imageName): self
+    {
+        $this->imageName = $imageName;
+
+        return $this;
     }
 }

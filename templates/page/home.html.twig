@@ -7,7 +7,7 @@
         {% for annonce in annonces %}
             <article>
                 <h2> <a href="{{path('annonce_show',{id: annonce.id})}}">{{ annonce.title}}</a></h2>
-                <p>{{ annonce.description}}</p>
+                <p>{{ annonce.description|u.truncate(50,'...',false)}}</p>
             </article>
         {% endfor %}
     </div>

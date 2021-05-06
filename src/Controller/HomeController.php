@@ -63,7 +63,7 @@ class HomeController extends AbstractController
             $em->flush();
             
 
-            //$this->addFlash('success', 'Inscription  realisé avec succes!');
+            $this->addFlash('success', 'Votre annonce à été creer avec succes!');
             return $this->redirectToRoute("app_home");
 
         }
@@ -93,6 +93,8 @@ class HomeController extends AbstractController
 
             $em= $this->getDoctrine()->getManager();
             $em->flush();
+
+            $this->addFlash('success', 'Votre annonce à été modifier avec succes!');
             
 
             return $this->redirectToRoute("app_home");
@@ -115,6 +117,8 @@ class HomeController extends AbstractController
             $em= $this->getDoctrine()->getManager();
             $em->remove($annonce);
             $em->flush();
+
+            $this->addFlash('info', 'Votre annonce à été Suppromer!');
 
         }
 

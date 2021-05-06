@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use App\Form\AnnonceType;
 
 class HomeController extends AbstractController
 {
@@ -45,16 +46,15 @@ class HomeController extends AbstractController
      */
     public function creerAnnonce(Request $requet): Response
     {
-        $form = $this->createFormBuilder(null,['action'=>'creer-une-annonce','method'=>'POST'])
-                ->add('title')
-                ->add('description',TextareaType::class)
-                ->getForm();
+        $annonce= new Annonce();
+        $form = $this->createForm(AnnonceType::class, $annonce);
+
 
         $form->handleRequest($requet);
 
         if($form->isSubmitted() && $form->isValid() ){
             $data= $form->getData();
-            $annonce= new Annonce();
+            
 
             $annonce->setTitle($data["title"])
                       ->setDescription($data["description"]);
@@ -81,10 +81,7 @@ class HomeController extends AbstractController
      */
     public function etdit(Annonce $annonce,Request $requet): Response
     {
-        $form = $this->createFormBuilder($annonce)
-                ->add('title')
-                ->add('description',TextareaType::class)
-                ->getForm();
+        $form = $this->createForm(AnnonceType::class, $annonce);
 
         $form->handleRequest($requet);
 

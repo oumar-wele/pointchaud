@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=AnnonceRepository::class)
@@ -22,11 +23,15 @@ class Annonce
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Le champs titre est requis")
+     * @Assert\Length(min=5, minMessage="Vous devez saisir au moin 5 caractères")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message="Le champs description est requis")
+     * @Assert\Length(min=10,minMessage="Vous devez saisir au moin 5 caractères")
      */
     private $description;
 

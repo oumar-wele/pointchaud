@@ -2,16 +2,43 @@
 {% block body %}
 
     {% include 'navbar/_navbar.html.twig' %}
+    {% if annonces|length>0 %}
+        <h3 class="text-center text-muted mb-5">Annonces: {{annonces|length}} </h3>
+        {% for annonce in annonces %}
+            <div class=" row">
+                <div class=" col-md-12 mb-5">
+                    <article class="bg-white rounded border-bottom">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <a href="{{path('annonce_show',{id: annonce.id})}}">
+                                    <img src="{{ ( annonce.imageName ? vich_uploader_asset(annonce) : asset('image/noImage.png')) |imagine_filter('my_thumb_medium') }}" alt="{{ annonce.title }}" />
+                                </a>
+        
+                            </div>
+                            <div class="col-md-3">
+                                <h2> <a href="{{path('annonce_show',{id: annonce.id})}}">{{ annonce.title}}</a></h2>
+                                <h4>{{annonce.prix}}</h4>
+                                <p>{{ annonce.description|u.truncate(50,'...',false)}}</p>
+        
+                            </div>
+                        </div>
+                        
+        
+                    </article>
+
+                </div>
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+            <p class="h2 m-t-5 text-center"> Acuume annoce ne correspond a vos critere <a href="{{ path('create_annoce')}}"> deposer votre annonce</a> </p> 
+    
+
+    {% endif %}
 
     
-        <h3>Annonces: {{annonces|length}} </h3>
-        {% for annonce in annonces %}
-            <article>
-                <h2> <a href="{{path('annonce_show',{id: annonce.id})}}">{{ annonce.title}}</a></h2>
-                <h4>{{annonce.prix}}</h4>
-                <p>{{ annonce.description|u.truncate(50,'...',false)}}</p>
-            </article>
-        {% endfor %}
+
    
 
     {% include 'footer/_footer.html.twig' %}

@@ -1,15 +1,24 @@
+{% extends 'base.html.twig' %}
 {% block body %}
 
     {% include 'navbar/_navbar.html.twig' %}
 
     <div class="container mt-5 mt-5 text-center">
-  
-        <article>
-            <h2> {{ annonce.title}}</h2>
-            <p>{{ annonce.description}}</p>
-            <a href="{{path('edit_annoce',{id: annonce.id})}}">Modifier l'annonce</a>|
-            <a href="#" onclick="event.preventDefault(); confirm('Veuillez confirmer la suppression !')&& document.getElementById('js-annonce-delate').submit();" >Supprimer l'annonce</a>
-        </article>
+    
+    <div class="row">
+        <div class="col-md-4 mx-auto">
+            <article>
+                <a href="{{path('annonce_show',{id: annonce.id})}}">
+                    <img src="{{ ( annonce.imageName ? vich_uploader_asset(annonce) : asset('image/noImage.png')) |imagine_filter('my_thumb_medium') }}" alt="{{ annonce.title }}" />
+                </a>           
+                <h2> {{ annonce.title}}</h2>
+                <p>{{ annonce.description}}</p>
+                <a href="{{path('edit_annoce',{id: annonce.id})}}">Modifier l'annonce</a>|
+                <a href="#" onclick="event.preventDefault(); confirm('Veuillez confirmer la suppression !')&& document.getElementById('js-annonce-delate').submit();" >Supprimer l'annonce</a>
+            </article>
+        </div>
+    </div>
+
       
     </div>
     <form id="js-annonce-delate" action="{{path('delate_annoce',{id: annonce.id})}}" method="post" style="display: none;">

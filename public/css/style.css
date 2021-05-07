@@ -2,4 +2,16 @@ html,body
 {
     font-family: 'Montserrat', sans-serif;
 }
+
  
+.vich-image .form-check
+{
+    margin-top: 20px;
+}
+.vich-image img
+{
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}

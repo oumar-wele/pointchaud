@@ -56,8 +56,6 @@ class HomeController extends AbstractController
             $data= $form->getData();
             
 
-            $annonce->setTitle($data["title"])
-                      ->setDescription($data["description"]);
             $em= $this->getDoctrine()->getManager();
             $em->persist($annonce);
             $em->flush();

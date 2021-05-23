@@ -2,7 +2,10 @@ html,body
 {
     font-family: 'Montserrat', sans-serif;
 }
-
+ body
+ {
+    background-color:#F8F9F9;
+ }
  
 .vich-image .form-check
 {

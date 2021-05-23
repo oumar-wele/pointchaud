@@ -32,6 +32,9 @@
             
         {% endblock %}
     </head>
+    <!--<nav>
+       {% block nav %} {% endblock %}
+    </nav>-->
     <body>
         {% for type, messages in app.flashes %}
             {% for message in messages %}
@@ -41,9 +44,15 @@
             {% endfor %}
         {% endfor %}
         <main role="main" class="container bg-white "> 
-            {% block body %}{% endblock %}
-
+            
+           
         </main>
-               
+        {% block body %}{% endblock %}
+       
+
     </body>
+   <!-- <footer>
+        {% block footer %}{% endblock %}
+    </footer> -->
+
 </html>

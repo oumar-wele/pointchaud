@@ -3,23 +3,41 @@
 
     {% include 'navbar/_navbar.html.twig' %}
 
-    
-       
-    <div class="row">
-        <div class="col col-md-6 mx-auto bg-white">
-            <h2>Deposer votre annonce</h2>
-            {{ form_start(formulaire)}}
-                {{form_widget(formulaire)}}            
-                <div class="d-grid gap-2 mt-5">
-                    <button class="btn btn-lg btn-primary" type="submit" formnovalidate>Deposer votre annonce</button>
+    <div class="container  mt-5">
+            
+            <div  class="row">
+                <div class="col-md-5 mt-3 mx-auto">
+                    <h2 class="mx-auto"> Deposer votre annonce</h2> 
                 </div>
+            </div>
+            {{ form_start(formulaire)}}
+                <div class="row">
+                    <div class="col-md-5 mx-auto mb-2">{{form_row(formulaire.imageFile)}} </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5 mx-auto mb-2">{{form_row(formulaire.title)}} </div>
+                </div>
+                <div class="row row justify-content-md-center">
+                    <div class="col-md-2 mb-2">{{form_row(formulaire.prix)}} </div>
+                    <div class="col-md-3 mb-2">{{form_row(formulaire.localisation)}} </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-5 mx-auto mb-2">{{form_row(formulaire.description)}} </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5 mx-auto">
+                        <div class="d-grid gap-2 mb-5 mt-5">
+                            <button class="btn btn-lg btn-primary" type="submit" formnovalidate>Deposer votre annonce</button>
+                        </div>
+                    </div>
+                </div>
+                           
+
         
             {{form_end(formulaire)}}
-        </div>
+  
     </div>
-    
-
- 
     {% include 'footer/_footer.html.twig' %}
 
     

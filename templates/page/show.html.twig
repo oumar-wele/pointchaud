@@ -3,15 +3,15 @@
 
     {% include 'navbar/_navbar.html.twig' %}
 
-    <div class="container bg-white text-center">
+    <div class="container  text-center">
     
     <div class="row">
-        <div class="col-md-6 ">
+        <div class="col-md-6 mt-5 ">
             <article>
-                <div class="mb-5 border-rounded shadow">
-                    <a href="{{path('annonce_show',{id: annonce.id})}}">
-                        <img src="{{ ( annonce.imageName ? vich_uploader_asset(annonce) : asset('image/noImage.png')) |imagine_filter('my_thumb_medium') }}" alt="{{ annonce.title }}" />
-                    </a> 
+                <div class="mb-5 ">
+                    
+                    <img class="border shadow" src="{{ ( annonce.imageName ? vich_uploader_asset(annonce) : asset('image/noImage.png')) |imagine_filter('my_thumb_medium') }}" alt="{{ annonce.title }}" />
+                     
                 </div>
           
                 <div class="mb-5 border-bottom">
@@ -22,7 +22,7 @@
                 </div>
                 <div class=" border-bottom " style="margin-right: auto;">
                     <h4>Description</h4>
-                    <p>{{ annonce.description}}</p>
+                    <p class="text-break">{{ annonce.description}}</p>
                 </div>
 
                 
@@ -30,7 +30,7 @@
                 <a href="#" onclick="event.preventDefault(); confirm('Veuillez confirmer la suppression !')&& document.getElementById('js-annonce-delate').submit();" >Supprimer l'annonce</a>
             </article>
         </div>
-        <div class="col md-6">
+        <div class="col md-6 mt-5">
             <div class="row">
                 <div class="col col-md-8 ml-auto  shadow " style="margin-left: auto;">
                     <div class="d-grid gap-2 mb-3 mt-5">

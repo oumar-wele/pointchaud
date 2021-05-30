@@ -21,10 +21,11 @@ class AnnonceType extends AbstractType
                 'download_uri' => false,
                 'image_uri' => true,
                 'asset_helper' => true,
-                'imagine_pattern'=> 'my_thumb_medium'
+                'imagine_pattern'=> 'my_thumb_small'
             ])
             ->add('title',null,['label'=>'Titre'])
             ->add('prix')
+            ->add('localisation',null,["label"=>"ou se trouve votre Annonce?"])
             ->add('description')
 
         ;

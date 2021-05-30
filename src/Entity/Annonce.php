@@ -57,7 +57,7 @@ class Annonce
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $categorie;
+    private $localisation;
 
 
     /**
@@ -160,14 +160,14 @@ class Annonce
         return $this;
     }
 
-    public function getCategorie(): ?string
+    public function getLocalisation(): ?string
     {
-        return $this->categorie;
+        return $this->localisation;
     }
 
-    public function setCategorie(?string $categorie): self
+    public function setLocalisation(?string $localisation): self
     {
-        $this->categorie = $categorie;
+        $this->localisation = $localisation;
 
         return $this;
     }

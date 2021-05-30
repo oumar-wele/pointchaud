@@ -2,25 +2,30 @@
 {% block body %}
 
     {% include 'navbar/_navbar.html.twig' %}
-    <div class=" container bg-white">
+    <div class=" container">
         {% if annonces|length>0 %}
         <h3 class="text-center text-muted mb-5">Annonces: {{annonces|length}} </h3>
         {% for row in annonces|batch(1) %}
             <div class="row">
                 {% for annonce in row %}            
 
-                    <article class="col-md-9 bg-red rounded border  mb-5" style="margin-left: 50px;">
+                    <article class="col-md-8 border-bottom  mb-5" style="margin-left: 50px;">
                         <div class="row">
-                            <div class=" col-md-3 ">
+                            <div class=" col-md-3">
                                 <a href="{{path('annonce_show',{id: annonce.id})}}" >
-                                    <img class=" rounded" src="{{ ( annonce.imageName ? vich_uploader_asset(annonce) : asset('image/noImage.png')) |imagine_filter('my_thumb_small') }}" alt="{{ annonce.title }}" />
+                                    <img class=" rounded mb-3" src="{{ ( annonce.imageName ? vich_uploader_asset(annonce) : asset('image/noImage.png')) |imagine_filter('my_thumb_small') }}" alt="{{ annonce.title }}" />
                                 </a>
 
                             </div>
                             <div class="col-md-6">
+                                <div class=" row">
+
+                                </div>
                                 <h3> <a href="{{path('annonce_show',{id: annonce.id})}}" style="text-decoration: none; color: black;" >{{ annonce.title}}</a></h3>
                                 <h5>{{annonce.prix}}</h5>
-                                <p>{{ annonce.description|u.truncate(50,'...',false)}}</p>
+                                <h5>{{annonce.localisation}}</h5>
+                              
+                                
 
                             </div>
                         </div>

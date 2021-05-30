@@ -46,6 +46,10 @@ class HomeController extends AbstractController
      */
     public function creerAnnonce(Request $requet): Response
     {
+        if(!$this->getUser()){
+            return $this->redirectToRoute("app_login");
+
+        }
         $annonce= new Annonce();
         $form = $this->createForm(AnnonceType::class, $annonce);
 
@@ -55,7 +59,7 @@ class HomeController extends AbstractController
         if($form->isSubmitted() && $form->isValid() ){
             $data= $form->getData();
             
-
+            $annonce->setUser($this->getUser());
             $em= $this->getDoctrine()->getManager();
             $em->persist($annonce);
             $em->flush();

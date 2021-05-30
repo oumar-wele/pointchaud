@@ -3,37 +3,47 @@
 
     {% include 'navbar/_navbar.html.twig' %}
 
-    <div class="container  text-center">
+    <div class="container  rounded">
     
     <div class="row">
-        <div class="col-md-6 mt-5 ">
+        <div class="col-md-6 mt-5">
             <article>
                 <div class="mb-5 ">
                     
-                    <img class="border shadow" src="{{ ( annonce.imageName ? vich_uploader_asset(annonce) : asset('image/noImage.png')) |imagine_filter('my_thumb_medium') }}" alt="{{ annonce.title }}" />
+                    <img class="rounded shadow" src="{{ ( annonce.imageName ? vich_uploader_asset(annonce) : asset('image/noImage.png')) |imagine_filter('my_thumb_medium') }}" alt="{{ annonce.title }}" />
                      
                 </div>
           
-                <div class="mb-5 border-bottom">
+                <div class="mb-3 border-bottom">
                     <h2> {{ annonce.title}}</h2>
                 </div>
-                <div  class="border-bottom  mb-5">
+                <div  class="border-bottom  mb-3">
                     <h3>Prix: {{annonce.prix}}</h3>
                 </div>
-                <div class=" border-bottom " style="margin-right: auto;">
+                <div class=" border-bottom mb-5 ">
                     <h4>Description</h4>
                     <p class="text-break">{{ annonce.description}}</p>
                 </div>
+                {%  if app.user== annonce.user %}
+                <a href="{{path('edit_annoce',{id: annonce.id})}}"><button type="button" class="btn btn-primary btn-sm">Modifier l'annonce</button></a>
+                <a href="#" onclick="event.preventDefault(); confirm('Veuillez confirmer la suppression !')&& document.getElementById('js-annonce-delate').submit();" >
+                    <button type="button" class="btn btn-danger btn-sm">Supprimer l'annonce</button>
+                </a>
+                {% endif %}
 
                 
-                <a href="{{path('edit_annoce',{id: annonce.id})}}">Modifier l'annonce</a>|
-                <a href="#" onclick="event.preventDefault(); confirm('Veuillez confirmer la suppression !')&& document.getElementById('js-annonce-delate').submit();" >Supprimer l'annonce</a>
+            
             </article>
         </div>
         <div class="col md-6 mt-5">
             <div class="row">
-                <div class="col col-md-8 ml-auto  shadow " style="margin-left: auto;">
-                    <div class="d-grid gap-2 mb-3 mt-5">
+                <div class="col col-md-8 ml-auto  shadow " >
+                    <p class="text-center mt-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                          <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                        </svg>
+                      </p>
+                    <div class="d-grid gap-2 mb-3 ">
                         <button class="btn btn-lg btn-primary" type="submit">Acheter</button>
                     </div>
                     <div class="d-grid gap-2 mb-5">
